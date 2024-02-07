@@ -4,9 +4,54 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style/style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
     <title>Document</title>
   </head>
   <body>
+    <div class="container">
+      <div class="search-box">
+        <i class="bx bxs-map"></i>
+        <input type="text" placeholder="enter your locatin" />
+        <button class="bx bx-search"></button>
+      </div>
+
+      <div class="weather-box">
+        <div class="box">
+          <div class="info-weather">
+            <div class="weather">
+              <img src="style/pictures/cloud.png" />
+              <p class="temperature">16<span>°C</span></p>
+              <p class="description">borken clouds</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="weather-details">
+        <div class="humidity">
+          <i class="bx bx-water"></i>
+          <div class="text">
+            <div class="info-humidity">
+              <span>0%</span>
+            </div>
+            <p>humidity</p>
+          </div>
+        </div>
+
+        <div class="Wind">
+            <i class='bx bx-wind'></i>
+            <div class="text">
+              <div class="info-wind">
+                <span>0Km/h</span>
+              </div>
+              <p>Wind speed</p>
+            </div>
+          </div>
+      </div>
+    </div>
     <script src="js/javascript.js"></script>
   </body>
 </html>
