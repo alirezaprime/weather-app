@@ -18,7 +18,7 @@ body {
   position: relative;
   width: 400px;
   height: 555px;
-  background: rgba(255, 255, 255, .1);
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(30px);
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 16px;
@@ -71,6 +71,16 @@ body {
 .weather-box {
   text-align: center;
   margin: 0 40px;
+}
+.weather-box,
+.weather-details,
+.not-found {
+  visibility: hidden;
+}
+.weather-box.active,
+.weather-details.active,
+.not-found.active {
+  visibility: visible;
 }
 .weather-box img {
   width: 75%;
@@ -126,4 +136,20 @@ body {
 .weather-details p {
   font-size: 14px;
   font-weight: 500;
+}
+.not-found {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  margin-top: 110px;
+}
+.not-found img {
+  width: 80%;
+}
+.not-found P {
+  font-size: 22px;
+  font-weight: 500;
+  margin-top: 12px;
 }
