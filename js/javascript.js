@@ -3,6 +3,7 @@ const search = document.querySelector(".search-box button");
 const weatherBox = document.querySelector(".weather-box");
 const weatherDetails = document.querySelector(".weather-details");
 const error404 = document.querySelector(".not-found");
+const cityHide = document.querySelector(".city-hide");
 
 search.addEventListener("click", () => {
   const APIKey = "323cad199683c5e92ed6509dcfc5069e";
@@ -15,17 +16,13 @@ search.addEventListener("click", () => {
     .then((response) => response.json())
     .then((json) => {
       if (json.cod == "404") {
+        cityHide.textContent = city;
         container.style.height = "400px";
         weatherBox.classList.remove("active");
         weatherDetails.classList.remove("active");
         error404.classList.add("active");
         return;
       }
-
-      container.style.height = "555px";
-      weatherBox.classList.add("active");
-      weatherDetails.classList.add("active");
-      error404.classList.remove("active");
 
       const image = document.querySelector(".weather-box img");
       const temperature = document.querySelector(".weather-box .temperature");
@@ -35,38 +32,54 @@ search.addEventListener("click", () => {
       );
       const wind = document.querySelector(".weather-details .wind span");
 
-      switch (json.weather[0].main) {
-        case "Clear":
-          image.src = "style/pictures/sun.png";
-          break;
+      if (cityHide.textContent == city) {
+        return;
+      } else {
+        cityHide.textContent = city;
 
-        case "Rain":
-          image.src = "style/pictures/rain.png";
-          break;
+        container.style.height = "555px";
+        container.classList.add("active");
+        weatherBox.classList.add("active");
+        weatherDetails.classList.add("active");
+        error404.classList.remove("active");
 
-        case "Snow":
-          image.src = "style/pictures/snow.png";
-          break;
+        setTimeout(() => {
+          container.classList.remove("active");
+        }, 2500);
 
-        case "Clouds":
-          image.src = "style/pictures/cloud.png";
-          break;
-
-        case "Mist":
-          image.src = "style/pictures/air.png";
-          break;
-
-        case "Haze":
-          image.src = "style/pictures/haze.png";
-          break;
-
-        default:
-          image.src = "style/pictures/cloud.png";
+        switch (json.weather[0].main) {
+          case "Clear":
+            image.src = "style/pictures/sun.png";
+            break;
+  
+          case "Rain":
+            image.src = "style/pictures/rain.png";
+            break;
+  
+          case "Snow":
+            image.src = "style/pictures/snow.png";
+            break;
+  
+          case "Clouds":
+            image.src = "style/pictures/cloud.png";
+            break;
+  
+          case "Mist":
+            image.src = "style/pictures/air.png";
+            break;
+  
+          case "Haze":
+            image.src = "style/pictures/haze.png";
+            break;
+  
+          default:
+            image.src = "style/pictures/cloud.png";
+        }
+  
+        temperature.innerHTML = `${parseInt(json.main.temp)}<span>°C</span>`;
+        description.innerHTML = `${json.weather[0].description}`;
+        humidity.innerHTML = `${json.main.humidity}%`;
+        wind.innerHTML = `${parseInt(json.wind.speed)}Km/h`;
       }
-
-      temperature.innerHTML = `${parseInt(json.main.temp)}<span>°C</span>`;
-      description.innerHTML = `${json.weather[0].description}`;
-      humidity.innerHTML = `${json.main.humidity}%`;
-      wind.innerHTML = `${parseInt(json.wind.speed)}Km/h`;
     });
 });

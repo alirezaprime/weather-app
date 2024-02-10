@@ -76,6 +76,7 @@ body {
 .weather-box,
 .weather-details,
 .not-found {
+  overflow: hidden;
   visibility: hidden;
 }
 .weather-box.active,
@@ -175,4 +176,7 @@ body {
   font-weight: 500;
   position: relative;
   top: -50px;
+}
+.city-hide {
+  display: none;
 }
